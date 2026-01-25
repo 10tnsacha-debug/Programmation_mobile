@@ -10,8 +10,7 @@ class LoginPage extends StatelessWidget {
         title: const Text(
           'Log in or sign up',
           style: TextStyle(
-            color: Colors.black87,
-            fontSize: 28,
+            color: Color.fromARGB(221, 0, 0, 0),
             fontWeight: FontWeight.w700,
           ),
         ),
