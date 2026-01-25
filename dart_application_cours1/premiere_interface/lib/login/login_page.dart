@@ -27,7 +27,6 @@ class LoginPage extends StatelessWidget {
           children: [
             const Email(),
             const SizedBox(height: 16),
-
             ContinueButton(onPressed: () {}),
             const SizedBox(height: 24),
 

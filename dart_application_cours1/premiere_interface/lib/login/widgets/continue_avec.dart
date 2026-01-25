@@ -15,14 +15,19 @@ class ContinueAvec extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(
-      onPressed: onPressed,
-      child: Row(
-        children: [
-          SvgPicture.asset(icon, width: 24, height: 24),
-          const SizedBox(width: 12),
-          Expanded(child: Text('Continue with $label')),
-        ],
+    return SizedBox(
+      height: 56,
+      width: double.infinity,
+      child: OutlinedButton(
+        onPressed: onPressed,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(icon, height: 20),
+            const SizedBox(width: 12),
+            Text('Continue with $label'),
+          ],
+        ),
       ),
     );
   }
