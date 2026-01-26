@@ -3,6 +3,8 @@ import 'package:premiere_interface/theme/colors.dart';
 
 class Email extends StatelessWidget {
   const Email({super.key});
+  //const Email({required this.valueChanged, super.key});
+  //final ValueChanged<String>
 
   @override
   Widget build(BuildContext context) {
@@ -28,3 +30,11 @@ class Email extends StatelessWidget {
     );
   }
 }
+
+
+//
+
+
+
+
+//
