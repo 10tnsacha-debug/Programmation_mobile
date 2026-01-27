@@ -5,6 +5,8 @@ import 'package:formation_flutter/res/app_colors.dart';
 import 'package:formation_flutter/res/app_icons.dart';
 import 'package:formation_flutter/res/app_vectorial_images.dart';
 
+import 'package:formation_flutter/screens/product_page.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
         textTheme: TextTheme(headlineMedium: TextStyle()),
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: const ProductPage(),
     );
   }
 }
