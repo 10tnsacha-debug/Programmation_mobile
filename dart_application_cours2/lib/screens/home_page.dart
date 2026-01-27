@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:formation_flutter/res/app_colors.dart';
 import 'package:formation_flutter/res/app_icons.dart';
 import 'package:formation_flutter/res/app_vectorial_images.dart';
+import 'package:formation_flutter/screens/product_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -50,7 +51,12 @@ class HomePage extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(22.0)),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const ProductPage()),
+                  );
+                },
+
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
