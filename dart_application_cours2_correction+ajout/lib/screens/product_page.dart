@@ -45,16 +45,18 @@ class ProductPage extends StatelessWidget {
                   horizontal: 20.0,
                   vertical: 30.0,
                 ),
-                child: Column(
-                  crossAxisAlignment: .start,
-                  children: [
-                    Text(
-                      'Petits pois et carottes',
-                      style: context.theme.title1,
-                    ),
-                    Text('Cassegrain', style: context.theme.title2),
-                    Scores(),
-                  ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Petits pois et carottes',
+                        style: context.theme.title1,
+                      ),
+                      Text('Cassegrain', style: context.theme.title2),
+                      Scores(),
+                    ],
+                  ),
                 ),
               ),
             ),
