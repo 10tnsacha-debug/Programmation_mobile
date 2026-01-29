@@ -4,14 +4,15 @@ import 'package:formation_flutter/model/product.dart';
 import 'package:formation_flutter/res/app_colors.dart';
 import 'package:formation_flutter/res/app_icons.dart';
 import 'package:formation_flutter/res/app_theme_extension.dart';
+import 'package:formation_flutter/model/product_inherited.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({super.key});
-
   static const double IMAGE_HEIGHT = 300.0;
 
   @override
   Widget build(BuildContext context) {
+    final product = ProductInherited.of(context).product;
     return Scaffold(
       body: SizedBox.expand(
         child: Stack(
@@ -22,7 +23,7 @@ class ProductPage extends StatelessWidget {
               end: 0.0,
               height: IMAGE_HEIGHT,
               child: Image.network(
-                'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1310&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                product.picture ?? '',
                 fit: BoxFit.cover,
                 cacheHeight:
                     (IMAGE_HEIGHT * MediaQuery.devicePixelRatioOf(context))
@@ -48,11 +49,13 @@ class ProductPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: .start,
                   children: [
+                    Text(product.name ?? '', style: context.theme.title1),
                     Text(
-                      'Petits pois et carottes',
-                      style: context.theme.title1,
+                      (product.brands != null && product.brands!.isNotEmpty)
+                          ? product.brands!.first
+                          : '',
+                      style: context.theme.title2,
                     ),
-                    Text('Cassegrain', style: context.theme.title2),
                     Scores(),
                   ],
                 ),
@@ -70,6 +73,7 @@ class Scores extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final product = ProductInherited.of(context).product;
     return Column(
       children: [
         IntrinsicHeight(
@@ -78,18 +82,24 @@ class Scores extends StatelessWidget {
             children: [
               Expanded(
                 flex: 44,
-                child: _Nutriscore(nutriscore: ProductNutriScore.B),
+                child: _Nutriscore(
+                  nutriscore: product.nutriScore ?? ProductNutriScore.unknown,
+                ),
               ),
               VerticalDivider(),
               Expanded(
                 flex: 56,
-                child: _NovaGroup(novaScore: ProductNovaScore.group4),
+                child: _NovaGroup(
+                  novaScore: product.novaScore ?? ProductNovaScore.unknown,
+                ),
               ),
             ],
           ),
         ),
         Divider(),
-        _GreenScore(greenScore: ProductGreenScore.A),
+        _GreenScore(
+          greenScore: product.greenScore ?? ProductGreenScore.unknown,
+        ),
       ],
     );
   }
