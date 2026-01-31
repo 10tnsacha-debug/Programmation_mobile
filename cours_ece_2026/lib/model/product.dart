@@ -54,14 +54,18 @@ class Product {
     : barcode = json['barcode'] as String,
       name = json['name'] as String?,
       altName = json['altName'] as String?,
-      picture = json['picture'] as String?,
       quantity = json['quantity'] as String?,
       brands = (json['brands'] as List?)?.cast<String>(),
       manufacturingCountries = (json['manufacturingCountries'] as List?)
           ?.cast<String>(),
+      picture = (json['pictures'] is Map<String, dynamic>)
+          ? ((json['pictures'] as Map<String, dynamic>)['front'] as String?) ??
+                ((json['pictures'] as Map<String, dynamic>)['product']
+                    as String?)
+          : null,
       nutriScore = json['nutriScore'] != null
           ? ProductNutriScore.values.firstWhere(
-              (e) => e.name == json['nutriScore'],
+              (e) => e.name == (json['nutriScore'] as String).toUpperCase(),
               orElse: () => ProductNutriScore.unknown,
             )
           : null,
@@ -352,3 +356,28 @@ Product generateProduct() => Product(
     salt: Nutriment(unit: 'g', perServing: 0.1, per100g: 0.1),
   ),
 );
+
+class ProductApi {
+  final String barcode;
+  final String? name;
+  final Map<String, dynamic>? pictures;
+  final String? quantity;
+  final List<dynamic>? brands;
+
+  ProductApi.fromJSON(Map<String, dynamic> json)
+    : barcode = json['barcode'] as String,
+      name = json['name'] as String?,
+      pictures = json['pictures'] as Map<String, dynamic>?,
+      quantity = json['quantity'] as String?,
+      brands = json['brands'] as List<dynamic>?;
+
+  Product toProduct() {
+    return Product(
+      barcode: barcode,
+      name: name,
+      picture: pictures?['product'] as String?,
+      quantity: quantity,
+      brands: brands?.cast<String>(),
+    );
+  }
+}
